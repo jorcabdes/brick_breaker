@@ -18,6 +18,7 @@ class BrickBreaker extends FlameGame with HasCollisionDetection,KeyboardEvents,T
       height: gameHeight,
       ),
     );
+  final ValueNotifier<int> score = ValueNotifier(0); 
   final rand = math.Random(); 
   double get width => size.x;
   double get height => size.y;
@@ -49,7 +50,8 @@ class BrickBreaker extends FlameGame with HasCollisionDetection,KeyboardEvents,T
     world.removeAll(world.children.query<Ball>());
     world.removeAll(world.children.query<Bat>());
     world.removeAll(world.children.query<Brick>());
-    playState = PlayState.playing; 
+    playState = PlayState.playing;
+    score.value = 0;  
     world.add(Ball( 
         difficultyModifier: difficultyModifier, 
         radius: ballRadius,
