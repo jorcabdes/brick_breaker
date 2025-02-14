@@ -72,6 +72,8 @@ class BrickBreaker extends FlameGame with HasCollisionDetection,KeyboardEvents,T
               (j + 2.0) * brickHeight + j * brickGutter,
             ),
           color: brickColors[i],
+          //añadimos un booleano aleatorio para ver cuanta vida tendrá
+          doblegolpe: rand.nextBool(),
         ),
     ]);
     //debugMode = true; 

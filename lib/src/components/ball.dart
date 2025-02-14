@@ -6,6 +6,7 @@ import '../brick_breaker.dart';
 import 'bat.dart'; 
 import 'brick.dart';
 import 'play_area.dart'; 
+import '../config.dart';
 class Ball extends CircleComponent with CollisionCallbacks, HasGameReference<BrickBreaker> {
   
   Ball({
@@ -60,7 +61,15 @@ class Ball extends CircleComponent with CollisionCallbacks, HasGameReference<Bri
       } else if (position.x > other.position.x) {
         velocity.x = -velocity.x;
       }
+      //Metodo para reducir el bate
+      reducirbate();
       velocity.setFrom(velocity * difficultyModifier); 
     }
   } 
+  // Método para reducir el tamaño del Bat
+  void reducirbate() {
+    final bat = game.world.children.query<Bat>().first;
+    final newWidth = (bat.size.x - 10).clamp(batWidth / 2, double.infinity); // Limita el tamaño mínimo
+    bat.size = Vector2(newWidth, bat.size.y);
+  }
 }
