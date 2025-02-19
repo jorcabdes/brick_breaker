@@ -16,12 +16,14 @@ class BrickBreaker extends FlameGame with HasCollisionDetection,KeyboardEvents,T
       camera: CameraComponent.withFixedResolution(
       width: gameWidth,
       height: gameHeight,
+      
       ),
     );
   final ValueNotifier<int> score = ValueNotifier(0); 
   final rand = math.Random(); 
   double get width => size.x;
   double get height => size.y;
+  bool isPaused = false;
   late PlayState _playState; 
   PlayState get playState => _playState;
   set playState(PlayState playState) {
@@ -95,9 +97,21 @@ class BrickBreaker extends FlameGame with HasCollisionDetection,KeyboardEvents,T
     case LogicalKeyboardKey.space:
     case LogicalKeyboardKey.enter:
       startGame(); 
+    case LogicalKeyboardKey.keyP: // Pausar/Reanudar con "P"
+      togglePause();
     }
   return KeyEventResult.handled; 
- } 
+ }
+ void togglePause() {
+  isPaused = !isPaused;
+  if (isPaused) {
+    pauseEngine(); // Detiene la actualización del juego
+    overlays.add('pause'); // Muestra la pantalla de pausa
+  } else {
+    resumeEngine(); // Reanuda el juego
+    overlays.remove('pause');
+  }
+} 
  @override
  Color backgroundColor() => const Color(0xfff2e8cf); 
 }
