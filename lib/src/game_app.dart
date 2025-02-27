@@ -41,8 +41,9 @@ class _GameAppState extends State<GameApp> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color(0xffa9d6e5),
-                    Color(0xfff2e8cf),
+                    Color.fromARGB(255, 169, 229, 177),
+                    Color.fromARGB(255, 117, 155, 122),
+                    Color.fromARGB(255, 0, 0, 0),
                   ],
                 ),
               ),
@@ -79,6 +80,8 @@ class _GameAppState extends State<GameApp> {
                                   'pause': (context, game) => Center(
                                     child: Container(
                                       color: Colors.black54,
+                                      width: gameWidth,
+                                      height: gameHeight,
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
@@ -108,7 +111,7 @@ class _GameAppState extends State<GameApp> {
                 ),
               ),
             ),
-            //Ponermos un poton en la parte superior izquierda para poder pausar el juego
+            //Ponemos un boton en la parte superior derecha para poder pausar el juego
             Positioned(
               top: 20,
               right: 20,
